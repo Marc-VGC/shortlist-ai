@@ -14,7 +14,7 @@ Names, contact details, age, sex, civil status, religion and government IDs are 
 🌐 **Live app:** https://YOUR-APP.vercel.app  ← _replace after deploying_
 🎬 **2-minute demo:** _link to your video_
 
-![CI](https://github.com/YOUR-GITHUB-USERNAME/shortlist-ai/actions/workflows/ci.yml/badge.svg)
+![CI](https://github.com/Marc-VGC/shortlist-ai/actions/workflows/ci.yml/badge.svg)
 
 ---
 
@@ -54,7 +54,7 @@ Browser ──POST /api/screen──▶ validate (zod) ▶ rate limit ▶ redact
 Requirements: [Node.js 20+](https://nodejs.org).
 
 ```bash
-git clone https://github.com/YOUR-GITHUB-USERNAME/shortlist-ai.git
+git clone https://github.com/Marc-VGC/shortlist-ai.git
 cd shortlist-ai
 npm install
 cp .env.example .env.local      # then put your Anthropic API key in .env.local
