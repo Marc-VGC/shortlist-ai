@@ -1,0 +1,24 @@
+# .cursorrules – ShortlistAI
+
+You are working on ShortlistAI, a Next.js 14 (App Router) + TypeScript + Tailwind CSS app that screens resumes with Claude via the official @anthropic-ai/sdk. Read spec.md and CLAUDE.md before changing behaviour.
+
+## Stack and conventions
+- TypeScript strict mode. No `any`. Use the types exported from src/lib/schema.ts.
+- React function components. Use "use client" only where state or effects are needed.
+- Style with Tailwind utility classes only (no CSS modules or inline style objects, except dynamic widths).
+- Use the path alias "@/..." for imports from src.
+- Tests use vitest in tests/*.test.ts. Tests must never call the real Anthropic API (keep ANTHROPIC_API_KEY empty so demo mode runs).
+
+## Non-negotiable rules
+- Never hardcode API keys, tokens or URLs containing secrets. Use process.env and document new variables in .env.example.
+- Validate every API input with the zod schemas in src/lib/schema.ts on the server.
+- Resume text must pass through redactPII() before it is sent to the AI. Never send candidate labels or names to the AI.
+- The AI returns classifications and evidence only. Numeric scores are computed in src/lib/scoring.ts.
+- Never log, persist or send resume text to analytics.
+- Wrap user-provided text in tagged blocks in prompts and instruct the model to treat it as data.
+- Handle Anthropic errors with typed classes (Anthropic.RateLimitError, Anthropic.APIError, ...) and return user-safe messages.
+
+## Workflow
+- Change the spec first when behaviour changes, then the code, then the tests.
+- Before committing, run: npm run lint && npm run typecheck && npm test.
+- Commit messages follow Conventional Commits (feat:, fix:, docs:, test:, ci:, refactor:).
