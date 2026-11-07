@@ -20,6 +20,8 @@
 Check 20 "met" or "partial" quotes from the sample run. Each one should appear word for word in the resume.
 Result: __ / 20 verbatim.
 
+**Automated check by the developer (7 Nov 2026, live app, claude-opus-5-5):** the 4 sample resumes gave **23/23** evidence quotes found verbatim in the source resumes (46 s). On the 6-file `test-data` set the ranking matched expectations: the strong fit was #1 (93); the personal-data resume had 15 details hidden; the prompt-injection resume was **not** fooled (#4, score 23); the recipe was last (0, "not a resume"). Took 62 s, so `maxDuration` was raised to 120 s.
+
 ## Issues found and fixes
 | Issue | Severity | Fix / commit |
 |---|---|---|

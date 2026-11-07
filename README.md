@@ -11,7 +11,7 @@ Paste a job description and up to 8 resumes. In under a minute you get:
 
 Names, contact details, age, sex, civil status, religion and government IDs are **removed before the AI sees anything**.
 
-🌐 **Live app:** https://YOUR-APP.vercel.app  ← _replace after deploying_
+🌐 **Live app:** https://shortlist-ai-three.vercel.app
 🎬 **2-minute demo:** _link to your video_
 
 ![CI](https://github.com/Marc-VGC/shortlist-ai/actions/workflows/ci.yml/badge.svg)

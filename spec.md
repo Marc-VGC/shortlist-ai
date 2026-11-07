@@ -72,7 +72,7 @@ Recommendation:
 - **The AI omits a candidate or requirement:** that candidate or cell defaults to `not_met` and the summary asks the user to re-run. Nothing crashes.
 - **`stop_reason: max_tokens` or `refusal`:** returns 422 with guidance.
 - **Missing or invalid API key:** missing → demo mode; invalid → 500 "AI key is invalid", with no key details exposed.
-- **Performance:** maximum 8 candidates × 15k chars keeps the request within the 60 s Vercel function limit.
+- **Performance:** maximum 8 candidates × 15k chars keeps the request within the 120 s function limit (`maxDuration`). Measured on the live app: 46 s for 4 resumes and 62 s for 6.
 - **Privacy:** resume text is never persisted or logged. Logs contain aggregates only.
 
 ## 6. Revision history
