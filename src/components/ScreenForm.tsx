@@ -194,7 +194,7 @@ export default function ScreenForm({ value, onChange, onSubmit, onLoadSample, on
         disabled={loading}
         className="w-full rounded-xl bg-indigo-600 py-4 text-lg font-semibold text-white shadow-md transition hover:bg-indigo-700 disabled:cursor-wait disabled:opacity-70"
       >
-        {loading ? "Screening candidates… (about 20–60 seconds)" : `Screen ${value.candidates.length} candidate${value.candidates.length === 1 ? "" : "s"} with AI`}
+        {loading ? "Screening candidates… (about 30–90 seconds)" : `Screen ${value.candidates.length} candidate${value.candidates.length === 1 ? "" : "s"} with AI`}
       </button>
     </form>
   );

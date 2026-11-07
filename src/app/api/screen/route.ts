@@ -5,7 +5,7 @@ import { screenCandidates, ScreeningError } from "@/lib/screen";
 import { logUsage } from "@/lib/usageLog";
 
 export const runtime = "nodejs";
-export const maxDuration = 60; // seconds (Vercel function limit on the free plan)
+export const maxDuration = 120; // seconds - a 6-8 resume batch can take ~60-70 s
 
 export async function POST(request: Request) {
   const started = Date.now();
