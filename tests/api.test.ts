@@ -89,3 +89,22 @@ describe("prompt building", () => {
     expect(prompt).toContain("<job_description>");
   });
 });
+
+describe("test-data set (docs: test-data/README.md)", () => {
+  it("screens the 6 test files end to end without errors", async () => {
+    const { readFileSync, readdirSync } = await import("node:fs");
+    const files = readdirSync("test-data").filter((f) => /^0[1-6].*\.txt$/.test(f)).sort();
+    const body = {
+      jobTitle: "Recruitment Specialist",
+      jobDescription: readFileSync("test-data/00-job-description.txt", "utf8"),
+      extraRequirements: [],
+      candidates: files.map((f) => ({ label: f.slice(0, 2), resumeText: readFileSync(`test-data/${f}`, "utf8") })),
+    };
+    const res = await post(body);
+    expect(res.status).toBe(200);
+    const json = await res.json();
+    expect(json.candidates).toHaveLength(6);
+    const recipe = json.candidates.find((c: { label: string }) => c.label === "06");
+    expect(recipe.rank).toBeGreaterThan(3);
+  });
+});

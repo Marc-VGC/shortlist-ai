@@ -48,3 +48,16 @@ describe("redactPII", () => {
     expect(r.text).not.toContain("[CANDIDATE NAME]");
   });
 });
+
+describe("redactPII on the test-data resume with a full personal data sheet", () => {
+  it("removes every personal field but keeps the work history", async () => {
+    const { readFileSync } = await import("node:fs");
+    const text = readFileSync("test-data/02-resume-good-fit-with-personal-data.txt", "utf8");
+    const r = redactPII(text);
+    for (const leaked of ["Rodel", "rodel.garcia@example.com", "918 000 0202", "Cainta", "1981", "45", "Married", "Iglesia", "72 kg", "00-0000000-0", "000-000-000"]) {
+      expect(r.text, `should not contain "${leaked}"`).not.toContain(leaked);
+    }
+    expect(r.text).toContain("Hire around 20 store crew and cashiers per month");
+    expect(r.text).toContain("Career break (2019 – 2021)");
+  });
+});
