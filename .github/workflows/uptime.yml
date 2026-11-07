@@ -1,0 +1,24 @@
+name: Uptime check
+
+# Basic monitoring: pings the live app's health endpoint every day.
+# Set the repository variable LIVE_URL (Settings -> Secrets and variables -> Actions -> Variables),
+# e.g. https://shortlist-ai.vercel.app
+on:
+  schedule:
+    - cron: "0 1 * * *" # 09:00 Philippine time
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    if: ${{ vars.LIVE_URL != '' }}
+    steps:
+      - name: Check /api/health
+        run: |
+          body=$(curl -fsS --max-time 30 "${{ vars.LIVE_URL }}/api/health")
+          echo "$body"
+          echo "$body" | grep -q '"status":"ok"'
+          echo "$body" | grep -q '"aiConfigured":true' || echo "::warning::AI key not configured on the live app (demo mode)."
